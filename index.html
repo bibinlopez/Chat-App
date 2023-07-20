@@ -26,6 +26,8 @@
          <textarea id="message" class="form-control" placeholder="Your Message Here"></textarea>
          <br>
          <button id="send" class="btn btn-success">Send</button>
+         <br>
+         <button id="delete" class="btn btn-danger">Remove All Chats</button>
       </div>
       <div id="messages">
 
@@ -41,6 +43,11 @@
          getMessages()
       })
 
+      $(() => {
+         $("#delete").click(() => {
+            deleteAll()
+         })
+      })
       socket.on('message', addMessages)
 
       function addMessages(message) {
@@ -56,6 +63,10 @@
       function sendMessage(message) {
          $.post('http://localhost:3000/messages', message)
       }
+      function deleteAll(message) {
+         $.post('http://localhost:3000/delete')
+      }
+
    </script>
 </body>
 
